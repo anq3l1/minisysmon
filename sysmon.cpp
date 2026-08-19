@@ -11,14 +11,12 @@ while(true)
     std::cout << "╭──────────── SYSTEM MONITOR ────────────╮\n";
 
     std::cout << "│ " << std::left << std::setw(10)
-              << "CPU"
-              << cpu_stat() << "%"
-    << std::right << std::setw(30) << "│" << "\n";
+              << "CPU" << " " << cpu_bar() << " "
+              << cpu_stat() << "%" << "\n";
 
     std::cout << "│ " << std::left << std::setw(10)
-              << "GPU"
-              << gpu_stat() << "%"
-    << std::right << std::setw(30) << "│" << "\n";
+              << "GPU" << " " << gpu_bar() << " "
+              << gpu_stat() << "%" << "\n";
 
     std::cout << "│ " << std::left << std::setw(10)
               << "RAM"
