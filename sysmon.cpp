@@ -21,18 +21,15 @@ while(true)
     std::cout << "│ " << std::left << std::setw(10)
               << "RAM"
               << used_ram() << " / "
-              << totalram() << " GB"
-    << std::right << std::setw(12) << "│" << "\n";
+              << totalram() << " GB\n";
 
     std::cout << "│ " << std::left << std::setw(10)
               << "CPU Temp"
-              << cpu_temp() / 1000 << "°C"
-    << std::right << std::setw(28) << "│" << "\n";
+              << cpu_temp() / 1000 << "°C\n";
 
     std::cout << "│ " << std::left << std::setw(10)
               << "Uptime"
-              << sys_uptime() << " min"
-    << std::right << std::setw(26) << "│" << "\n";
+              << sys_uptime_hours() << "h " << sys_uptime_minute() << " min" << "\n";
 
     std::cout << "╰────────────────────────────────────────╯\n";
 
