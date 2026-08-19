@@ -14,7 +14,7 @@ std::string bars[6] { "█░░░░░░░░░",
                       "█████████░",
                       "██████████"};
 
-int sys_uptime()
+int sys_uptime_minute()
 {
     struct sysinfo si;
     int uptime = 0;
@@ -22,6 +22,19 @@ int sys_uptime()
     if(sysinfo(&si) == 0)
     {
         uptime = si.uptime / 60;
+    }
+
+    return uptime;
+}
+
+int sys_uptime_hours()
+{
+    struct sysinfo si;
+    int uptime = 0;
+
+    if(sysinfo(&si) == 0)
+    {
+        uptime = si.uptime / 60 / 60;
     }
 
     return uptime;
