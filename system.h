@@ -7,6 +7,13 @@
 #include <thread>
 #include <chrono>
 
+std::string bars[6] { "█░░░░░░░░░", 
+                      "███░░░░░░░", 
+                      "█████░░░░░", 
+                      "███████░░░",
+                      "█████████░",
+                      "██████████"};
+
 int sys_uptime()
 {
     struct sysinfo si;
@@ -50,6 +57,26 @@ long long cpu_stat()
     return usage;
 }
 
+std::string cpu_bar()
+{
+    long long stat = cpu_stat();
+
+    if(stat <= 10)
+        return bars[0];
+    else if(stat > 11 && stat <= 30)
+        return bars[1];
+    else if(stat > 31 && stat <= 50)
+        return bars[2];
+    else if(stat > 51 && stat <= 70)
+        return bars[3];
+    else if(stat > 71 && stat <= 90)
+        return bars[4];
+    else if(stat > 91 && stat <= 100)
+        return bars[5];
+
+    return "";
+}
+
 int gpu_stat()
 {
     std::ifstream file("/sys/class/drm/card1/device/gpu_busy_percent");
@@ -62,6 +89,27 @@ int gpu_stat()
     return perc;
 }
 
+std::string gpu_bar()
+{
+    long long stat = gpu_stat();
+
+    if(stat <= 10)
+        return bars[0];
+    else if(stat > 11 && stat <= 30)
+        return bars[1];
+    else if(stat > 31 && stat <= 50)
+        return bars[2];
+    else if(stat > 51 && stat <= 70)
+        return bars[3];
+    else if(stat > 71 && stat <= 90)
+        return bars[4];
+    else if(stat > 91 && stat <= 100)
+        return bars[5];
+
+    return "";
+}
+
+
 float used_ram()
 {
     struct sysinfo si;
@@ -69,7 +117,7 @@ float used_ram()
     if(sysinfo(&si) == 0)
     {
         return (float)(si.totalram - si.freeram)
-               / 1024 / 1024 / 1024;
+               / 1024 / 1024 / 1024 / 2;
     }
 
     return 0;
